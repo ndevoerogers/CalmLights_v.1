@@ -17,7 +17,7 @@ SYSTEM_MODE(MANUAL);
 
 const int PIXELCOUNT = 12;
 float t = 6;
-int y;
+float y;
 void pixelFill(int start, int end, int color);
 
 Adafruit_NeoPixel pixel (PIXELCOUNT, SPI1, WS2812B);
@@ -46,8 +46,8 @@ void setup() {
 
 
 void loop(){   
-  y= 50*sin(2*M_PI*0.16*t)+50;
-  pixel.setBrightness(y);
+  y = 127.5*sin(2*M_PI*0.16*t)+127.5;
+  pixel.setBrightness((int)y);
   pixelFill(0,12,blue);
  
   Serial.printf("%i\n",y);
