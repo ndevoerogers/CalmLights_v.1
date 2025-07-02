@@ -11,11 +11,13 @@
 #include "Particle.h"
 #include "math.h"
 #include "neopixel.h"
+#include "Colors.h"
 
-SYSTEM_MODE(AUTOMATIC);
+SYSTEM_MODE(MANUAL);
 
 const int PIXELCOUNT = 12;
 float t = 6;
+int y;
 void pixelFill(int start, int end, int color);
 
 Adafruit_NeoPixel pixel (PIXELCOUNT, SPI1, WS2812B);
@@ -23,13 +25,36 @@ Adafruit_NeoPixel pixel (PIXELCOUNT, SPI1, WS2812B);
 
 
 void setup() {
+  Serial.begin(9600);
+  waitFor(Serial.isConnected, 2000);
+
+
+  WiFi.on ();
+  WiFi.clearCredentials();
+  WiFi.setCredentials("IoTNetwork");
+  WiFi.connect();
+  while (WiFi.connecting()) {
+    Serial.printf(".");
+  }
+  Serial.printf("\n\n");
+
+ 
   pixel.begin();
-  pixel.setBrightness(127.5*sin(2*M_PI*0.16*t)+127.5);
-  pixel.show();
+
+ 
   }
 
 
-void loop(); 
+void loop(){   
+  y= 50*sin(2*M_PI*0.16*t)+50;
+  pixel.setBrightness(y);
+  pixelFill(0,12,blue);
+ 
+  Serial.printf("%i\n",y);
+pixel.show();
+  
+}
+
 void pixelFill(int start, int end, int color){
   int p; 
   for (p=start; p<=end; p++){
