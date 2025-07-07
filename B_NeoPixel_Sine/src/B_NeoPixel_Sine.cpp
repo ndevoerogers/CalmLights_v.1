@@ -16,8 +16,13 @@
 SYSTEM_MODE(MANUAL);
 
 const int PIXELCOUNT = 12;
-float t = 6;
+float t;
 float y;
+float OFFSET = 1.75; //max inspiratory 
+float AMPLITUDE = 1.75; //max expiratory
+float V= 0.16; //period
+float BRI; //brightness
+float LH; //Last Hue
 void pixelFill(int start, int end, int color);
 
 Adafruit_NeoPixel pixel (PIXELCOUNT, SPI1, WS2812B);
@@ -45,12 +50,13 @@ void setup() {
   }
 
 
-void loop(){   
-  y = 127.5*sin(2*M_PI*0.16*t)+127.5;
+void loop(){  
+  t = millis() / 1000.0;
+  y = OFFSET*sin(2*M_PI*V*t)+AMPLITUDE;
   pixel.setBrightness((int)y);
   pixelFill(0,12,blue);
  
-  Serial.printf("%i\n",y);
+  Serial.printf("%f\n",y);
 pixel.show();
   
 }

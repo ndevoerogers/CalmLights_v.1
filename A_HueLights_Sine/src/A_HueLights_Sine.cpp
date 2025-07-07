@@ -14,7 +14,7 @@
 
 SYSTEM_MODE(MANUAL);
 
-const int BULB = 5;
+int BULB;
 float t = 6; // time in seconds
 float OFFSET = 1.75; //max inspiratory 
 float AMPLITUDE = 1.75; //max expiratory
@@ -40,12 +40,15 @@ void setup() {
 
 
 void loop() {
+  for (BULB = 1; BULB <7; BULB++) {
+    setHue(BULB, true, HueBlue, BRI, 255);
+  }
   t = millis()/1000.0;
   BRI = 127.5*sin(2*M_PI*0.16*t)+127.5;
   setHue(5, true, HueBlue, BRI, 255);
   if ((millis()-LH)>30){
     LH = millis();
-   setHue(5, true, HueBlue, BRI, 255);
+   setHue(BULB, true, HueBlue, BRI, 255);
     }
 
 }
