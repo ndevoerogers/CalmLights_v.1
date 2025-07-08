@@ -22,7 +22,7 @@ float humidRH; //BME
 const int OLED = -1; //OLED
 const int ADDRESS = 0x76; //BME
 const int OLEDADDRESS = 0x3C; //OLED
-int BULB = 5; //hue
+const int BULB = 6; //hue
 int BRI = 170; //hue
 const int PIXELCOUNT = 12; //Pixel ring
 float t; //Pixel ring
@@ -123,17 +123,21 @@ void loop() {
   pixel.show();
   Serial.printf("%f\n",y);
 
-  if ((tempf >78) || (humidRH >50)) {
-   setHue(BULB, true, HueBlue, BRI, 255);
- }
-  //  t = millis()/1000.0;
+  if ((tempf >78)){ //|| (humidRH >50)) {
+    setHue(BULB, true, HueBlue, BRI, 255);
 
-// setHue(5, true, HueBlue, BRI, 255);
-//    if ((millis()-LH)>30){
-//     LH = millis();
-//     setHue(BULB, true, HueBlue, BRI, 255);
+  }
+  else { 
+    setHue(BULB, true, HueYellow, BRI, 255);
+  }
+  // t = millis()/1000.0;
+
+  // setHue(5, true, HueBlue, BRI, 255);
+  // if ((millis()-LH)>30){
+  //   LH = millis();
+  //   setHue(BULB, true, HueBlue, BRI, 255);
+  // }
 }
-
 
 
 
@@ -142,6 +146,5 @@ void pixelFill(int start, int end, int color){
   for (p=start; p<=end; p++){
     pixel.setPixelColor (p, color);
   }
-  pixel.show();
-  
+
 }
