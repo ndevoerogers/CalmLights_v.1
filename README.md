@@ -21,7 +21,7 @@ For this project, I knew that I would need to organize my code into sub-projects
 Once I completed my coding I then started working on the controller design. I made a simple box in SolidWorks, imported it into Adobe Illustrator to create cut outs for the button, sensor and display. At this point, I decided to use acrylic for my remote shell and used a Epi Log Laser to cut out my design.
 
 
-[Link] (https://www.hackster.io/nicole-devrog/calm-lights-midterm-1-254b44)
+ (https://www.hackster.io/nicole-devrog/calm-lights-midterm-1-254b44)
 
 
 
